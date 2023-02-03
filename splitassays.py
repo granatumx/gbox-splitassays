@@ -37,16 +37,17 @@ def main():
     for key, val in inv_map.items():
         assay_export_name = "[A]{}".format(key)
         overlap = set(val).intersection(set(assay.index))
-        tb = assay.loc[list(overlap), :]
+        if len(overlap) > 4:
+            tb = assay.loc[list(overlap), :]
 
-        exported_assay = {
-            "matrix": tb.T.values.tolist(),
-            "sampleIds": tb.index.tolist(),
-            "geneIds": tb.columns.tolist(),
-        }
+            exported_assay = {
+                "matrix": tb.T.values.tolist(),
+                "sampleIds": tb.index.tolist(),
+                "geneIds": tb.columns.tolist(),
+            }
 
-        gn.export(exported_assay, assay_export_name, "assay")
-        gn.export(tb.to_csv(), "{}.csv".format(key), kind='raw', meta=None, raw=True)
+            gn.export(exported_assay, assay_export_name, "assay")
+            gn.export(tb.to_csv(), "{}.csv".format(key), kind='raw', meta=None, raw=True)
 
     timing = "* Finished step in {} seconds*".format(time_passed)
     gn.add_result(timing, "markdown")
