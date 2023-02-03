@@ -40,7 +40,7 @@ def main():
         tb = assay.loc[list(overlap), :]
 
         exported_assay = {
-            "matrix": tb.values.tolist(),
+            "matrix": tb.T.values.tolist(),
             "sampleIds": tb.index.tolist(),
             "geneIds": tb.columns.tolist(),
         }
