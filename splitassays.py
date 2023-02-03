@@ -42,8 +42,8 @@ def main():
 
             exported_assay = {
                 "matrix": tb.values.tolist(),
-                "sampleIds": tb.index.tolist(),
-                "geneIds": tb.columns.tolist(),
+                "sampleIds": tb.columns.tolist(),
+                "geneIds": tb.index.tolist(),
             }
 
             gn.export(exported_assay, assay_export_name, "assay")
