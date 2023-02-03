@@ -36,12 +36,12 @@ def main():
 
     for key, val in inv_map.items():
         assay_export_name = "[A]{}".format(key)
-        overlap = set(val).intersection(set(assay.index))
+        overlap = set(val).intersection(set(assay.columns))
         if len(overlap) > 4:
-            tb = assay.loc[list(overlap), :]
+            tb = assay.loc[:, list(overlap)]
 
             exported_assay = {
-                "matrix": tb.T.values.tolist(),
+                "matrix": tb.values.tolist(),
                 "sampleIds": tb.index.tolist(),
                 "geneIds": tb.columns.tolist(),
             }
