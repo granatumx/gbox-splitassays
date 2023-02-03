@@ -39,11 +39,12 @@ def main():
         overlap = set(val).intersection(set(assay.columns))
         if len(overlap) > 4:
             tb = assay.loc[:, list(overlap)]
+            print("{} num columns = {}  num rows = {} len of sampleIds = {} len of geneIds = {}, numoverlaps = {}".format(val, tb.shape[1], tb.shape[0], len(tb.columns.values.tolist()), len(tb.index.values.tolist()), len(overlap)), flush=True)
 
             exported_assay = {
-                "matrix": tb.T.values.tolist(),
-                "sampleIds": tb.columns.tolist(),
-                "geneIds": tb.index.tolist(),
+                "matrix": tb.values.tolist(),
+                "sampleIds": tb.columns.values.tolist(),
+                "geneIds": tb.index.values.tolist(),
             }
 
             gn.export(exported_assay, assay_export_name, "assay")
