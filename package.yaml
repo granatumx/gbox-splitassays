@@ -1,0 +1,9 @@
+id: splitassays-{VER}
+
+meta:
+  maintainer:
+    name: GranatumX
+    email: lana.garmire.group@gmail.com
+
+gboxes:
+  - ./yamls/splitassays.yaml

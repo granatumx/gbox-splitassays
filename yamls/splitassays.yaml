@@ -1,0 +1,20 @@
+id: SplitAssays-{VER}
+meta:
+  title: Split Assays {VER}
+  subtitle: >-
+    This gbox provides the ability to split an assay based on cell metadata
+  description: >
+    This gbox provides the ability to split an assay based on cell metadata. Data is saved into the corresponding assayswith names from the cell metadata. For example, if the cell types are labelled for the cells, you can split into different assays based on the cell types.
+endpoints:
+  backend:
+    cmd: python ./splitassays.py
+    type: docker
+    image: {GBOX}
+frontend:
+  imports:
+    - kind: assay
+      label: Assay to use
+      injectInto: assay
+    - kind: sampleMeta
+      label: Sample labeling that will be split
+      injectInto: groups
